@@ -1,0 +1,87 @@
+link: https://onlinegdb.com/2AKbnQv-m
+#include <iostream>
+#include<stack>
+#include <string>
+#include <queue>
+using namespace std;
+int main()
+{
+    bool check=true;
+    int numer;
+    char opcja;
+    int id=0;
+    queue <string> dokumenty;
+    stack <string> przetworzenie;
+    while(1){
+        // warunek ten pozwala pominąć wyświetlanie menu, gdy użytkownik
+        //wprowadzi błędny rodzaj dokumentu nie musi od nowa wybierać 1 w menu
+        if(check){
+        cout<<"1.Dodaj nowy dokument"<<endl;
+        cout<<"2.Przetworz dokument"<<endl;
+        cout<<"3.Usun dokument wychodzacy"<<endl;
+        cout<<"4.Zakonczenie programu"<<endl;
+        cout<<"Wybierz opcje: ";
+        cin>>numer;
+        cout<<endl;
+        }
+            if(numer==1){
+                cout<<"Dodaj Wniosek - W / Skarge - S "<<endl;
+                cout<<"Wybierz rodzaj dokumentu: ";
+                cin>>opcja;
+                check=false;
+                    if(opcja=='W' || opcja=='w'){
+                        id++;
+                        // to_string aby móc dodać string i int
+                        dokumenty.push("Wniosek (ID: "+to_string(id)+")");
+                        //cout<<"Wybrano wniosek"<<endl;
+                        cout<<endl<<"Dodano: "<<dokumenty.back()<<endl<<endl;
+                        check=true;
+                    }
+                    else if(opcja=='S' || opcja=='s'){
+                        id++;
+                        dokumenty.push("Skarga (ID: "+to_string(id)+")");
+                        //cout<<"Wybrano skarge"<<endl;
+                        cout<<endl<<"Dodano: "<<dokumenty.back()<<endl<<endl;
+                        check=true;
+                    }
+                    else{
+                        cout<<"Wprowadzono bledna opcje"<<endl<<endl;
+                        // aby przy ponownym wprowadzaniu nie powracało do menu
+                        // program po wprwoadzeniu ciągu znaków buforowo je przetwarza
+                        // wiec jezeli napiszemy wyraz zawierający w albo s
+                        // np: wsb to odczyta w czyli wniosek potem s-skarge
+                        // i b jako bledna opcje 
+                    }
+            }
+            else if(numer==2){
+                if(dokumenty.empty()){
+                    cout<<"Blad przetwarzania, brak dokumentow do przetworzenie"<<endl<<endl;
+                }
+                else{
+                przetworzenie.push(dokumenty.front()); // Przeniesienie z kolejki na stos
+                // Kolejka FIFO - first in first out
+                // Stos LIFO - last in first out 
+                cout<<"Przetworzono dokument "<<przetworzenie.top()<<endl<<endl; //Przeniesienie na s
+                dokumenty.pop(); // Usuwanie z kolejki przypisanych już elementów do stosu
+                }
+            }
+            else if(numer==3){
+                if(przetworzenie.empty()){
+                    cout<<"Blad usuwania, brak elementow do usuwania"<<endl<<endl;
+                }
+                else{
+                cout<<"Usunieto "<<przetworzenie.top()<<endl<<endl;
+                przetworzenie.pop(); //Usunięcie ze stosu
+                }
+            }
+            else if(numer==4){
+                cout<<"Zakonczenie dzialania programu"<<endl; //zsumowanie itd
+                cout<<"Liczba wszystkich dokumentów to: "<<id<<endl;
+                break;
+            }
+            else{
+                cout<<"Wybierz opcje ponownie"<<endl;
+            }
+    }
+    return 0;
+}

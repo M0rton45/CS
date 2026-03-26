@@ -1,0 +1,61 @@
+problem: kładzenie paczek jedna na druga
+P - odłożenie paczki na stos
+O - zdjęcie ze stosu paczki (wypisanie numer zdjętej paczki 
+lub czy stos pusty)
+E - zakończenie operacji i wypisaniu numerów paczek ze stosu
+(od góry do dołu)
+
+Dodanie paczki licznik++ i wtedy dodanie paczka(licznik)
+Zdjecię paczki licznik-- i wtedy sciagamy paczka.pop
+zakończenie, sciąganie ostatniego elementu i zapisanie go w tablicy 
+
+while(true)
+stos.pop() - usuwa ostatni element
+stos.push(x) - wrzuca element x na stos
+stos.size() - ile elementow ma
+stos.empty() - czy stos jest pusty (true gdy pusty)
+stos.top() - najwyższy element
+<<cout
+<<cin
+
+#include <iostream>
+#include<stack>
+using namespace std;
+int main()
+{
+    int licznik=1; // nr paczki od 1
+    stack <int> paczka;
+    char opcja;
+
+    while(true){
+        cout<<"P - polozenie, O - zdjecie, E - zamkniecie"<<endl;
+        cin>>opcja;
+        if (opcja=='P'){
+            cout<<"polozenie paczki"<<endl;
+            paczka.push(licznik);
+            licznik++;
+        } // numer paczki nie moze byc mnieszy od 0
+        else if (opcja=='O' && licznik>1){
+            cout<<"zdjecie paczki"<<endl;
+            paczka.pop();
+            licznik--;
+        }
+        else if (opcja=='E'){
+            cout<<"Zakonczenie"<<endl;
+            licznik=paczka.size();
+            if(paczka.empty()==false){
+            for(int i=0; i<licznik; i++){
+                cout<<"Numer paczki: "<<paczka.top()<<endl;
+                paczka.pop();
+                }
+            }else{
+                cout<<"Brak paczek";
+            }
+            break;
+        }
+        else{
+            cout<<"Nie poprawna wartosc lub brak paczek"<<endl;
+        }
+    }
+    return 0;
+}

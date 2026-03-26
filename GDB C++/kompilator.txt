@@ -1,0 +1,49 @@
+problem: sprawdzanie czy nawiasy maja początek i koniec
+Po poprawnym wprowadzeniu napis OK, błędne BŁĄD
+
+string nawiasy i liczby jednocześnie
+nawiasy otwierający musi być przed zamykającym
+czy string posiada jakikolwiek nawias
+
+1)
+
+#include <iostream>
+#include<stack>
+#include <string> // do zapisu liczb z nawisami
+using namespace std;
+int main()
+{
+    cout<<"Hello World"<<endl;
+    string odp;
+    int checkO;
+    int checkZ;
+    int licznik=0;
+    bool test;
+    cin>>odp;
+    // cout<<odp[0]<<endl;
+        for (int i=0; i<odp.length(); i++){
+            if(odp[i]=='('){
+                checkO=i;
+                licznik++;
+            }
+            if (odp[i]==')'){
+                checkZ=i;
+                licznik--;
+            }
+        } 
+    // cout<<checkO<<" "<<licznikO<<endl;
+    // cout<<checkZ<<" "<<licznikZ<<endl;
+    if (checkO<checkZ && licznik==0){
+        test=true;
+        cout<<"Poprawny zapis: "<<test<<endl;
+    }
+    else{
+        test=false;
+        cout<<"Nie poprawny zapis: "<<test<<endl;
+        break;
+    }   
+    return 0;
+}
+
+2)
+Tworzenie stosu

@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int wiek;
+    int tablicaWiek[5];
+    for (int i=0; i<5; i++){
+    cout<<"Podaj swój wiek nr."<< i << endl;
+    cin >> wiek;
+    tablicaWiek[i]=wiek;
+    int time = 2025;
+    int aktualnyRok = time-wiek;
+    cout<<"Rok urodzenia to "<<aktualnyRok<<" ";
+    if (wiek >= 18)
+    {
+        cout<<"Dostep uzyskany możesz korzystac z programu"<<endl;
+    } else {
+        cout<<"Odmowa dostepu jestes niepelnoletni"<<endl;
+    }
+    }
+    int maxWiek;
+    maxWiek=tablicaWiek[0];
+    int minWiek;
+    int licznik;
+    licznik=0;
+    minWiek=tablicaWiek[0];
+    int suma;
+    int srednia;
+    suma=0;
+    for (int x=0; x<5; x++){
+        if (tablicaWiek[x]>maxWiek){
+            maxWiek=tablicaWiek[x];
+        }else if (tablicaWiek[x]<minWiek){
+            minWiek=tablicaWiek[x];
+        }else if (tablicaWiek[x]>=10 && tablicaWiek[x]<=18){
+            licznik++;
+        }
+        cout<<tablicaWiek[x]<<" ";
+        suma+=tablicaWiek[x];
+    }
+    
+    cout<<endl<<"Największy wiek z tej tablicy to "<<maxWiek<<endl;
+    cout<<"Najmniejszy wiek z tej tablicy to "<<minWiek<<endl;
+    cout<<"Srednia wieku to "<<suma/5<<endl;
+    cout<<"Liczba osob miedzy 10 a 18 to "<<licznik<<endl;
+    return 0;
+}
